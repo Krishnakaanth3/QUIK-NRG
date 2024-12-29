@@ -22,5 +22,14 @@ const RestaurantCard = (props) => {
   );
 };
 // higher order function
-
+const withPopularLabel = (RestaurantCard) => {
+  return () => {
+    return (
+      <div>
+        <label>Popular</label>
+        <RestaurantCard />
+      </div>
+    );
+  };
+};
 export default RestaurantCard;
