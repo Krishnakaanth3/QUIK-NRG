@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withFastDeliveryLabel } from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
-  const RestaurantCardPopular = withPopularLabel(RestaurantCard);
+  const RestaurantCardInstant = withFastDeliveryLabel(RestaurantCard);
 
   useEffect(() => {
     fetchData();
@@ -82,7 +82,11 @@ const Body = () => {
               key={restaurant.info.id}
               to={"/restaurants/" + restaurant.info.id}
             >
-              <RestaurantCard resData={restaurant} />{" "}
+              {restaurant.info.sla.deliveryTime < 25 ? (
+                <RestaurantCardInstant resData={restaurant} />
+              ) : (
+                <RestaurantCard resData={restaurant} />
+              )}
             </Link>
           ))}
       </div>

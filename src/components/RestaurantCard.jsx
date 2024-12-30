@@ -21,12 +21,14 @@ const RestaurantCard = (props) => {
   );
 };
 // higher order function
-const withPopularLabel = (RestaurantCard) => {
-  return () => {
+export const withFastDeliveryLabel = (RestaurantCard) => {
+  return (props) => {
     return (
       <div>
-        <label>Popular</label>
-        <RestaurantCard />
+        <label className="absolute bg-black text-white m-2 p-2 rounded-lg">
+          ⚡️ Bolt
+        </label>
+        <RestaurantCard {...props} />
       </div>
     );
   };
