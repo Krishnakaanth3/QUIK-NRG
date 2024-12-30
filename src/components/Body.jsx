@@ -9,6 +9,8 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
+  const RestaurantCardPopular = withPopularLabel(RestaurantCard);
+
   useEffect(() => {
     fetchData();
   }, []);
