@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/userContext";
 const Header = () => {
-  const [btnClk, setBtnClk] = useState("Login");
+  const [btnClk, setBtnClk] = useState("Logout");
 
   const onlineStatus = useOnlineStatus();
 

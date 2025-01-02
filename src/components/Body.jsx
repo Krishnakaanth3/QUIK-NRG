@@ -1,9 +1,10 @@
 import RestaurantCard, { withFastDeliveryLabel } from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import { CARD_API } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/userContext";
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -34,7 +35,9 @@ const Body = () => {
       </h1>
     );
 
-  return listOfRestaurants == 0 ? (
+  const { loggedInUser, setUserName } = useContext(UserContext);
+
+  return listOfRestaurants.length == 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
@@ -43,6 +46,7 @@ const Body = () => {
           <input
             type="text"
             className="border border-solid border-black "
+            placeholder="Search for Restaurants"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
@@ -72,6 +76,16 @@ const Body = () => {
           >
             Top Rated Restaurant
           </button>
+        </div>
+        <div className=" m-4 p-4 flex items-center">
+          <label className="px-2 ">UserName: </label>
+          <input
+            className="border border-black p-2"
+            value={loggedInUser}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+          />
         </div>
       </div>
       <div className="resto-container flex flex-wrap">
