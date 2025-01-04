@@ -1,1 +1,1 @@
-just documenting my learning on a remote repository.
+just documenting my learning on a remote repository
